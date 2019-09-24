@@ -21,6 +21,7 @@ view: distribution_centers {
     type: string
     sql: ${TABLE}."NAME" ;;
   }
+# Adding long & latitude as location TYPE
 
   measure: count {
     type: count
