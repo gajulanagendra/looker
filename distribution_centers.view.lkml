@@ -23,6 +23,13 @@ view: distribution_centers {
   }
 # Adding long & latitude as location TYPE
 
+
+  dimension: store_location {
+    type: location
+    sql_latitude: ${TABLE}."LATITUDE" ;;
+    sql_longitude: ${TABLE}."LONGITUDE" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name, products.count]
