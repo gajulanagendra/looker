@@ -10,7 +10,13 @@ datagroup: nagendra_default_datagroup {
 
 persist_with: nagendra_default_datagroup
 
-explore: distribution_centers {}
+explore: distribution_centers {
+  join: products {
+  type: left_outer
+  sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
+  relationship: many_to_one
+}
+}
 
 explore: etl_jobs {}
 
