@@ -92,20 +92,6 @@ view: users {
     }
 
 
-    dimension: gender_initial {
-      case: {
-        when: {
-          sql: ${gender}='Male'
-            label='M';;
-        }
-        when: {
-          sql: ${gender}='Female'
-            label:'F';;
-        }
-      }
-
-    }
-
 
 
 
