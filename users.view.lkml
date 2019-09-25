@@ -84,14 +84,14 @@ view: users {
 
 
   # custom Dimensions
-  dimension: age_group {
+
+
+  dimension: age_tier {
     type: tier
-    tiers: [0,20,40,60,80]
-    #style: classic
+    tiers: [0, 10, 20, 30, 40, 50, 60, 70, 80]
+    style: classic # the default value, could be excluded
     sql: ${age} ;;
-    }
-
-
+  }
 
 
 
