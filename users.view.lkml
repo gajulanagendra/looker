@@ -82,6 +82,33 @@ view: users {
     sql: ${TABLE}."ZIP" ;;
   }
 
+
+  # custom Dimensions
+  dimension: age_group {
+    type: tier
+    tiers: [0,20,40,60,80]
+    style: classic
+    sql: ${age} ;;
+    }
+
+
+    dimension: gender_initial {
+      case: {
+        when: {
+          sql: ${gender}='Male'
+            label='M';;
+        }
+        when: {
+          sql: ${gender}='Female'
+            label:'F';;
+        }
+      }
+
+    }
+
+
+
+
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]

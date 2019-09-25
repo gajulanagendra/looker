@@ -95,6 +95,64 @@ view: order_items {
     drill_fields: [detail*]
   }
 
+   # Custom Measures
+  measure: count_orders {
+    label: "Order Count"
+    description: "Distinct Orders Count with Drill fields"
+    type: count_distinct
+    drill_fields: [detail*]
+    sql: ${TABLE}.order_id ;;
+    html: <span title="Orders Count:">{{rendered_value}}</span>;;
+  }
+
+
+
+
+  measure: prev_month_sale {
+    label: "Previous Month Total Sale"
+    description: "Previous Month Total Sale with drill fields"
+    type:  sum
+    sql: ${TABLE}.sale_price ;;
+    drill_fields: [detail*]
+    filters:
+    {
+      field: created_month
+      value: "last month"}
+    value_format_name: usd_0
+  }
+  #
+
+
+
+  measure: completed_orders_percent {
+    type: number
+    sql:(${completed_orders})/ nullif(${count_orders},0) ;;
+    value_format_name: percent_2
+  }
+
+  measure: completed_orders {
+    type: count_distinct
+
+    sql: ${TABLE}.order_id ;;
+    filters: {
+      field: status
+      value: "Complete"
+    }
+  }
+
+  measure: sale_by_gender {
+    type: sum
+    sql: ${TABLE}.sale_price;;
+    filters: {
+      field: users.gender
+      value: "Male"
+    }
+    filters: {
+      field: users.gender
+      value: "Female"
+    }
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

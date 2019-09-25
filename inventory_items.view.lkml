@@ -81,6 +81,18 @@ view: inventory_items {
     sql: ${TABLE}."SOLD_AT" ;;
   }
 
+
+# Discrete Measures
+  measure: total_product_cost {
+    label: "Total Unique Product Cost"
+    description: "Total Unique Products Cost by Product ID"
+    type: sum_distinct
+    sql_distinct_key: ${product_id} ;;
+    sql: ${TABLE}.cost ;;
+    value_format_name: usd_0
+  }
+
+
   measure: count {
     type: count
     drill_fields: [id, product_name, products.id, products.name, order_items.count]
