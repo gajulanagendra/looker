@@ -22,6 +22,7 @@ explore: etl_jobs {}
 
 explore: events {
   join: users {
+
     type: left_outer
     sql_on: ${events.user_id} = ${users.id} ;;
     relationship: many_to_one
@@ -66,6 +67,8 @@ explore: order_items {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
+
+
 }
 
 explore: products {
