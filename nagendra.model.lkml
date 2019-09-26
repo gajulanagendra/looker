@@ -44,19 +44,18 @@ explore: inventory_items {
 }
 
 explore: order_items {
-  always_filter: {
-    filters: {
-      field: inventory_item_id
-      value: ">=200"
-    }
-    }
   join: users {
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;
     relationship: many_to_one
 
   }
-
+  always_filter: {
+    filters: {
+      field: users.country
+      value: "USA"
+    }
+  }
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
