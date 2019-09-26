@@ -44,6 +44,12 @@ explore: inventory_items {
 }
 
 explore: order_items {
+  always_filter: {
+    filters: {
+      field: inventory_item_id
+      value: ">=200"
+    }
+    }
   join: users {
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;
@@ -68,8 +74,6 @@ explore: order_items {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
-
-
 }
 
 explore: products {
@@ -79,5 +83,4 @@ explore: products {
     relationship: many_to_one
   }
 }
-
 explore: users {}
